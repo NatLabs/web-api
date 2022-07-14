@@ -1,24 +1,9 @@
 {
   "version": 1,
   "dfx": "0.10.0",
-  "canisters": {
-    "dchess_mo": {
-      "type": "motoko",
-      "main": "src/dchess_mo/main.mo"
-    },
-    "dchess_mo_assets": {
-      "type": "assets",
-      "source": [
-        "src/dchess_mo_assets/assets"
-      ],
-      "dependencies": [
-        "dchess_mo"
-      ]
-    }
-  },
   "defaults": {
     "build": {
-      "packtool": "",
+      "packtool": "vessel sources",
       "args": ""
     }
   },
