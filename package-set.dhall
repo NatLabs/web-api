@@ -8,22 +8,15 @@ let Package = {
 	dependencies : List Text 
 }
 
--- This is where you can add your own packages to the package-set
-let  additions = [] : List Package
+-- This is where you can add/override existing packages in the package-set
+-- For example, if you wanted to use version `v2.0.0` of the foo library:
+let additions = [
+	{ 
+		name = "foo", 
+		version = "v2.0.0", 
+		repo = "https://github.com/bar/foo", 
+		dependencies = [] : List Text
+	}
+]
 
-{- This is where you can override existing packages in the package-set
-
-     For example, if you wanted to use version `v2.0.0` of the foo library:
-    let overrides = [
-        { 
-			name = "foo", 
-		 	version = "v2.0.0", 
-			repo = "https://github.com/bar/foo", 
-			dependencies = [] : List Text
-        }
-    ]
--}
-
-let overrides = [] : List Package
-
-in  aviate_labs # vessel_package_set # overrides
+in  aviate_labs # vessel_package_set # additions
