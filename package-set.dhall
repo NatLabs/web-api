@@ -11,12 +11,12 @@ let Package = {
 -- This is where you can add/override existing packages in the package-set
 -- For example, if you wanted to use version `v2.0.0` of the foo library:
 let additions = [
-	{ 
-		name = "foo", 
-		version = "v2.0.0", 
-		repo = "https://github.com/bar/foo", 
-		dependencies = [] : List Text
-	}
-]
+	-- { 
+	-- 	name = "foo", 
+	-- 	version = "v2.0.0", 
+	-- 	repo = "https://github.com/bar/foo", 
+	-- 	dependencies = [] : List Text
+	-- }
+] : List Package
 
 in  aviate_labs # vessel_package_set # additions
