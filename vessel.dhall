@@ -1,4 +1,4 @@
 {
-  dependencies = [ "base"],
-  compiler = Some "0.7.0"
+  dependencies = [ "base", "MultiValuedMap", "Itertools"],
+  compiler = Some "0.7.3"
 }
