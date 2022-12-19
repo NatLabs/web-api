@@ -40,7 +40,7 @@
                 case (null) "anon";
             };
 
-            res.text(username).build();
+            res.text(username # "'s profile page").build();
         },
     );
 
