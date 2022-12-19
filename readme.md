@@ -1,5 +1,9 @@
 # http tools
+ WIP
 
+ > This is a work in progress. The API is not stable and may change at any time.
+ 
+ This is an example of how the `web-api` can be used once it is fully implemented.
 ## outcall
 ```motoko
     import Request "mo:web-api/Request";
