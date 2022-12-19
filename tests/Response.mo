@@ -4,6 +4,8 @@ import Nat "mo:base/Nat";
 
 import ActorSpec "./utils/ActorSpec";
 
+import Response "../src/ResponseBuilder";
+
 let {
     assertTrue;
     assertFalse;
@@ -22,7 +24,13 @@ let success = run([
             it(
                 "(test name)",
                 do {
-                    assertTrue(true);
+                    let res = Response.B();
+
+                    let finished_res = res.status_code(100).build();
+
+                    assertTrue(
+                        finished_res.status_code == 100,
+                    );
                 },
             ),
         ],

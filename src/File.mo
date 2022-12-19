@@ -8,8 +8,6 @@ import Nat "mo:base/Nat";
 import Text "mo:base/Text";
 import Time "mo:base/Time";
 
-import Itertools "mo:Itertools/Iter";
-
 import { BufferModule } "Utils";
 
 module {
@@ -24,21 +22,25 @@ module {
         lastModified : ?Time.Time;
     };
 
-    public class File(fileData : FileData, fileBlob : Blob) {
+    public class File(
+        _filename : Text,
+        _mimeType : Text,
+        _lastModified : ?Time.Time,
+    ) {
 
         /// The name and extention of the file.
-        public let filename = fileData.filename;
+        public let filename = _filename;
 
         /// The MIME type of the file
-        public let mimeType = fileData.mimeType;
+        public let mimeType = _mimeType;
 
         /// The UTC timestamp when the file was last modified
-        public let lastModified = switch (fileData.lastModified) {
+        public let lastModified = switch (_lastModified) {
             case (?time) time;
             case (null) Time.now();
         };
 
-        let buffer = Buffer.fromArray<Nat8>(Blob.toArray(fileBlob));
+        let buffer = Buffer.Buffer<Nat8>(8);
 
         /// The number of bytes of the file
         public func size() : Nat {
@@ -76,9 +78,11 @@ module {
 
     /// Creates a file from an array of consecutive blob slices of the file's dataa
     public func fromChunks(fileData : FileData, chunks : [Blob]) : File {
-        let file = File(fileData, chunks[0]);
+        let { filename; mimeType; lastModified } = fileData;
 
-        for (i in Itertools.range(1, chunks.size())) {
+        let file = File(filename, mimeType, lastModified);
+
+        for (i in Iter.range(0, (chunks.size() - 1) : Nat)) {
             file.append(chunks[i]);
         };
 
