@@ -38,4 +38,11 @@ module {
 
         request;
     };
+
+    public func get(url : Text) : Request = Request("GET", url);
+    public func post(url : Text) : Request = Request("POST", url);
+    public func put(url : Text) : Request = Request("PUT", url);
+    public func delete(url : Text) : Request = Request("DELETE", url);
+    public func patch(url : Text) : Request = Request("PATCH", url);
+    
 };

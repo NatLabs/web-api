@@ -16,6 +16,10 @@ module {
         public let headers = TrieMap.TrieMap<Text, Text>(Text.equal, Text.hash);
         var _body = Text.encodeUtf8("");
 
+        public func setBody(body : Blob) {
+            _body := body;
+        };
+
         public let body = {
             json = func() : Blob {
                 serdeJson.fromText(_body);
